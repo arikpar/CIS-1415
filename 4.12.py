@@ -1,11 +1,19 @@
+#Arik Parenteau
+#
+#9/25/2018
+#CIS 1415 Chapter 4 Problem 12
+
+#dictionary with car services provided
 services = {'Oil change': 35, 'Tire rotation': 19,
             'Car wash': 7, 'Car wax': 12, '-': 0
 }            
+#shows a menu of services
 print("Davy's auto shop services")
 print('Oil change -- $35\n'
       'Tire rotation -- $19\n'
       'Car wash -- $7\n'
       'Car wax -- $12')
+
 
 service1 = input('\nSelect first service:\n')
 service2 = input('Select second service:\n')
