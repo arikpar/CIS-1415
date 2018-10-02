@@ -1,5 +1,5 @@
 #Arik Parenteau
-#
+#Gabe Sorenson
 
 import random
 
