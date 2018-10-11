@@ -1,5 +1,5 @@
 #Arik Parenteau
-#
+#Gabe Sorenson
 
 def get_num_of_characters(inputStr):
     return len(inputStr)
