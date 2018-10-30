@@ -1,5 +1,5 @@
 #Arik Parenteau
-#
+#Gabe Sorenson
 
 fullname = input('Enter a full name\n')
 namelist = fullname.split()
