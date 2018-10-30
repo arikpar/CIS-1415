@@ -1,5 +1,5 @@
 #Gabe Sorenson
-#
+#Arik Parenteau
 
 def main():
     english = input('Enter your English here: ')
