@@ -1,3 +1,5 @@
+#Gabe Sorenson
+
 def main():
 	mystr = input('Enter a string: ')
 	mystr.lower()
