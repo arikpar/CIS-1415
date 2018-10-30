@@ -1,3 +1,5 @@
+#
+#Gabe Sorenson
 phoneNumber = input('Enter a phone number in the form xxx-xxx-xxxx to translate:\n')
 phoneNumber = phoneNumber.upper()
 for i in phoneNumber:
