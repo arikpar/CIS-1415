@@ -1,4 +1,5 @@
 #Gabe Sorenson
+#Arik Parenteau
 
 def main():
 	mystr = input('Enter a string: ')
