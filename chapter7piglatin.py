@@ -1,3 +1,6 @@
+#Gabe Sorenson
+#
+
 def main():
     english = input('Enter your English here: ')
     pig = []
