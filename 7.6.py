@@ -1,3 +1,6 @@
+#Arik Parenteau
+#
+
 theString = input('Enter input string:\n')
 
 while theString != 'q':
