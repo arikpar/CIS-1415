@@ -1,5 +1,5 @@
 #Arik Parenteau
-#
+#Gabe Sorenson
 
 menu = {'Taco': 6.99, 'Cheeseburger': 7.50, 'Lasagna': 10.99, 'Chili cheese fries': 8.25,
         'Poutine': 5.99, 'Soup and salad': 7.99, 'Steak': 12.99 }
