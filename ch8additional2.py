@@ -1,5 +1,5 @@
 #Gabe Sorenson
-#
+#Arik Parenteau
 
 #This program asks the user to enter 10 numbers, stores the numbers in a list,
 #and displays the highest number, lowest number, total of the numbers, and the average.
