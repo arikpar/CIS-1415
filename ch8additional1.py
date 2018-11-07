@@ -1,5 +1,5 @@
 #Gabe Sorenson
-#
+#Arik Parenteau
 
 def main():
     names_of_months = ['January', 'February', 'March', 'April', 'May', 'June',\
