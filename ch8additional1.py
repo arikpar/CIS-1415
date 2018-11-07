@@ -32,7 +32,7 @@ def calc_total_rainfall(total_rainfall_list):
         total_rainfall = total_rainfall +\
                          total_rainfall_list[current_monthly_rainfall_index]
 
-    return  total_rainfall
+    return total_rainfall
 
 def calc_avg_monthly_rainfall(total_rainfall, total_rainfall_list):
     number_of_months = len(total_rainfall_list)
@@ -44,27 +44,29 @@ def highest_rainfall_month(total_rainfall_list, names_of_months):
     highest_rainfall_amount = max(total_rainfall_list)
     highest_rainfall_amount_index = total_rainfall_list.index(highest_rainfall_amount)
 
-    return names_of_months(highest_rainfall_amount_index)
+    return highest_rainfall_amount_index
 
 def lowest_rainfall_month(total_rainfall_list, names_of_months):
     lowest_rainfall_amount = min(total_rainfall_list)
     lowest_rainfall_amount_index = total_rainfall_list.index(lowest_rainfall_amount)
 
-    return names_of_months(lowest_rainfall_amount_index)
+    return lowest_rainfall_amount_index
     
 def print_rainfall_stats(total_rainfall_list, names_of_months, total_rainfall,\
                          average_rainfall, highest_rainfall_month,\
                          lowest_rainfall_month):
     print()
     
-    for month_index in range(len(names_of_months)):
+    for index in range(len(names_of_months)):
         print(names_of_months[index], 'has a rainfall amount of',\
               total_rainfall_list[index])
         
-    print('\nTotal rainfall: ' + str(total_rainfall),\
-          'Average rainfall: ' + format(average_rainfall, '.3f'),\
-          highest_rainfall_month + ' has the highest rainfall',
-          lowest_rainfall_month + ' has the lowest rainfall', sep = '\n')
+    print('\nTotal rainfall: ', str(total_rainfall),\
+          'Average rainfall: ', format(average_rainfall, '.3f'),\
+          highest_rainfall_month + " has the highest rainfall",\
+          lowest_rainfall_month + " has the lowest rainfall", sep = '\n')
 
     
 main()    
+        
+
