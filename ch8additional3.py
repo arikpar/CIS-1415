@@ -1,5 +1,5 @@
 #Arik Parenteau
-#
+#Gabe Sorenson
 
 codes = {'A': '@', 'a': '9', 'B': '%', 'b': '#', 'C': 'A', 'c': 'B', 'D': 'C', 'd': 'E',
          'E': 'D', 'e': 'F', 'F': 'G', 'f': 'H', 'G': 'I', 'g': 'J', 'H': 'K', 'h': 'L',
