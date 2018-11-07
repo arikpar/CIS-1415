@@ -3,7 +3,7 @@
 
 def main():
     names_of_months = ['January', 'February', 'March', 'April', 'May', 'June',\
-                       'July', 'September', 'October', 'November', 'December']
+                       'July', 'August', 'September', 'October', 'November', 'December']
     total_rainfall_list = []
     total_rainfall_list = get_rainfall_amounts(names_of_months)
     total_rainfall = calc_total_rainfall(total_rainfall_list)
