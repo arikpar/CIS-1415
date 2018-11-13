@@ -1,3 +1,6 @@
+#Arik Parenteau
+#
+
 class CellPhone:
 	def __init__(self,manufact = '',model='' ,retail_price = 0):
 		self.manufact = manufact
