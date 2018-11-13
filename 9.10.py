@@ -1,3 +1,6 @@
+#Arik Parenteau
+#
+
 class ItemToPurchase:
     def __init__(self, item_name = 'none', item_price = 0, item_quantity = 0):
         self.item_name = item_name
@@ -10,7 +13,7 @@ class ItemToPurchase:
 
 
 if __name__ == "__main__":
-#Creates a list of objects
+	#Creates a list of objects from the ItemToPurchase class
 	instancelist = [ItemToPurchase() for i in range(2)]
 	
 	for x in range(len(instancelist)):
