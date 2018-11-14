@@ -1,5 +1,5 @@
 #Arik Parenteau
-#
+#Gabe Sorenson
 
 class Employee:
     def __init__(self,name = '',id_number ='' ,department = '',job_title = ''):
