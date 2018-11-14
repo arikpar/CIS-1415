@@ -1,5 +1,5 @@
 #Arik Parenteau
-#
+#Gabe Sorenson
 
 class CellPhone:
 	def __init__(self,manufact = '',model='' ,retail_price = 0):
