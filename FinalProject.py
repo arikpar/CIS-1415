@@ -16,10 +16,23 @@ card_value = {
 
 
 def calc_score(card_list):
-  total = 0
-  for card in card_list:
-    if total >=11 and card == 'A':
-      total += 1
-    else:
-      total += card_value[card]
-  return total
+total = 0
+   for card in card_list:
+      if total >=11 and card == 'A':
+         total += 1
+      else:
+        total += card_value[card]
+   return total
+
+def make_bet():
+   bet = 0
+   print('What amount of chips would you like bet?')
+  
+   while bet == 0:
+      bet_comp = input()
+      bet_comp = int(bet_comp)
+      
+      if bet_comp >= 1 and bet_comp <= chip_total:
+         bet = bet_comp
+      else:
+         print("You only have " + str(chip_total) + " remaining")
