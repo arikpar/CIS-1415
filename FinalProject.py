@@ -40,10 +40,8 @@ def make_bet():
           
 import random
 
-deck_cards = card_value
-
+deck_cards = card_value.copy()
 class BlackjackHand:
-    
     def __init__(self):
         self.hand_total = 0
         self.hand_vals = []
@@ -82,18 +80,24 @@ class BlackjackHand:
                 self.hand_total = self.hand_total + 10
             if self.hand_cards[x] in [11,12,13,24,25,26,37,38,39,50,51,52]:
                 self.hand_total = self.hand_total + 10
-            if self.hand_cards[x] in [1,14,27,40] and self.total <= 10:
+            if self.hand_cards[x] in [1,14,27,40] and self.hand_total <= 10:
                 self.hand_total = self.hand_total + 11
-            if self.hand_cards[x] in [1,14,27,40] and self.total > 10:
+            if self.hand_cards[x] in [1,14,27,40] and self.hand_total > 10:
                 self.hand_total = self.hand_total + 1
         return self.hand_total
 
     def output_cards(self):
-        print('Cards in hand')
+        print('Cards in hand:')
         for x in range(len(self.hand_cards)):
             card = int(self.hand_cards[x])
-            print(card_value[card])
+            if card in card_value:
+                
+                cardval = card_value[card]
+                print(cardval)
         print('Total: %d' % self.calculate_hand_val())
+
+    def hit(self):
+        
         
 		
 BJH = BlackjackHand()
