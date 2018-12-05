@@ -36,3 +36,65 @@ def make_bet():
          bet = bet_comp
       else:
          print("You only have " + str(chip_total) + " remaining")
+
+          
+import random
+
+deck_cards = card_value
+
+class BlackjackHand:
+    
+    def __init__(self):
+        self.hand_total = 0
+        self.hand_vals = []
+        self.hand_cards = []
+        self.draw_card()
+        self.draw_card()
+
+    def draw_card(self):
+        rand_val = random.randint(1,52)
+        while rand_val not in deck_cards:
+            rand_val = random.randint(1,52)
+        self.hand_cards.append(rand_val)
+        deck_cards.pop(rand_val)
+        
+
+    def calculate_hand_val(self):
+        self.hand_total = 0
+        for x in range(len(self.hand_cards)):
+            if self.hand_cards[x] in [2,15,28,41]:
+                self.hand_total = self.hand_total + 2
+            if self.hand_cards[x] in [3,16,29,42]:
+                self.hand_total = self.hand_total + 3
+            if self.hand_cards[x] in [4,17,30,43]:
+                self.hand_total = self.hand_total + 4
+            if self.hand_cards[x] in [5,18,31,44]:
+                self.hand_total = self.hand_total + 5
+            if self.hand_cards[x] in [6,19,32,45]:
+                self.hand_total = self.hand_total + 6
+            if self.hand_cards[x] in [7,20,33,46]:
+                self.hand_total = self.hand_total + 7
+            if self.hand_cards[x] in [8,21,34,47]:
+                self.hand_total = self.hand_total + 8
+            if self.hand_cards[x] in [9,22,35,48]:
+                self.hand_total = self.hand_total + 9
+            if self.hand_cards[x] in [10,23,36,49]:
+                self.hand_total = self.hand_total + 10
+            if self.hand_cards[x] in [11,12,13,24,25,26,37,38,39,50,51,52]:
+                self.hand_total = self.hand_total + 10
+            if self.hand_cards[x] in [1,14,27,40] and self.total <= 10:
+                self.hand_total = self.hand_total + 11
+            if self.hand_cards[x] in [1,14,27,40] and self.total > 10:
+                self.hand_total = self.hand_total + 1
+        return self.hand_total
+
+    def output_cards(self):
+        print('Cards in hand')
+        for x in range(len(self.hand_cards)):
+            card = int(self.hand_cards[x])
+            print(card_value[card])
+        print('Total: %d' % self.calculate_hand_val())
+        
+		
+BJH = BlackjackHand()
+BJH.output_cards()
