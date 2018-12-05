@@ -26,7 +26,7 @@ total = 0
 
 def make_bet():
    bet = 0
-   print('What amount of chips would you like bet?')
+   print('What amount of chips would you like bet? Each chip is worth $5.')
   
    while bet == 0:
       bet_comp = input()
