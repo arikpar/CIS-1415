@@ -2,13 +2,12 @@
 #Arik Parenteau
 
 import random
-
 card_value = {
-  1: 'Ace of Hearts', 2: '2 of Hearts', 3: '3 of Hearts', 4: '4 of Hearts', 5: '5 of Hearts', 6: '6 of Hearts',
-  7: '7 of Hearts', 8: '8 of Hearts', 9: '9 of Hearts', 10: '10 of Hearts', 11: 'Jack of Hearts', 12: 'Queen of Hearts', 
-  13: 'King of Hearts', 14: 'Ace of Diamonds', 15: '2 of Diamonds', 16: '3 of Diamonds', 17: '4 of Diamonds',
-  18: '5 of Diamonds', 19: '6 of Diamonds', 20: '7 of Diamonds', 21: '8 of Diamonds', 22: '9 of Diamonds',
-  23: '10 of Diamonds', 24: 'Jack of Diamonds', 25: 'Queen of Diamonds', 26: 'King of Diamonds', 27: 'Ace of Clubs',
+  1: 'Ace of Hearts', 2: 'Two of Hearts', 3: 'Three of Hearts', 4: 'Four of Hearts', 5: 'Five of Hearts', 6: 'Six of Hearts',
+  7: 'Seven of Hearts', 8: 'Eight of Hearts', 9: 'Nine of Hearts', 10: 'Ten of Hearts', 11: 'Jack of Hearts', 12: 'Queen of Hearts', 
+  13: 'King of Hearts', 14: 'Ace of Diamonds', 15: 'Two of Diamonds', 16: 'Three of Diamonds', 17: 'Four of Diamonds',
+  18: 'Five of Diamonds', 19: 'Six of Diamonds', 20: 'Seven of Diamonds', 21: 'Eight of Diamonds', 22: 'Nine of Diamonds',
+  23: 'Ten of Diamonds', 24: 'Jack of Diamonds', 25: 'Queen of Diamonds', 26: 'King of Diamonds', 27: 'Ace of Clubs',
   28: '2 of Clubs', 29: '3 of Clubs', 30: '4 of Clubs', 31: '5 of Clubs', 32: '6 of Clubs', 33: '7 of Clubs',
   34: '8 of Clubs', 35: '9 of Clubs', 36: '10 of Clubs', 37: 'Jack of Clubs', 38: 'Queen of Clubs', 39: 'King of Clubs', 
   40: 'Ace of Spades', 41: '2 of Spades', 42: '3 of Spades', 43: '4 of Spades', 44: '5 of Spades', 45: '6 of Spades',
@@ -16,38 +15,61 @@ card_value = {
   52: 'King of Spades'
 }
 
+deck_cards = card_value.copy()
+
+
 #functions
-def calc_score(card_list):
-total = 0
-   for card in card_list:
-      if total >=11 and card == 'A':
-         total += 1
-      else:
-        total += card_value[card]
-   return total
 
 def make_bet(chip_total):
-   bet = 0
-   print('What amount of chips would you like bet? Each chip is worth $5.')
-  
-   while bet == 0:
-      bet_comp = input()
-      bet_comp = int(bet_comp)
-      
-      if bet_comp >= 1 and bet_comp <= chip_total:
-         bet = bet_comp
-         chip_total = chip_total - bet
-         print("You put in $" + str(bet_comp*5) + ".")
-      else:
-         print("You only have " + str(chip_total) + " remaining")
-   return chip_total
+    bet = 0
+    print('What amount of chips would you like bet? Each chip is worth $5.')
+    while bet == 0:
+        bet_comp = input()
+        bet_comp = int(bet_comp)
 
-def hit(BlackjackHand):
-   BlackjackHand.draw_card()
-   BlackjackHand.output_cards()
+        if bet_comp >= 1 and bet_comp <= chip_total:
+            bet = bet_comp
+            chip_total = chip_total - bet
+            print("You put in $" + str(bet_comp*5) + ".")
+        else:
+            print("You only have " + str(chip_total) + " remaining")
+    return chip_total, bet
 
 
-deck_cards = card_value.copy()
+def play_round(chip_total):
+    hit = ''
+    chip_total, bet = make_bet(chip_total)
+    user_hand = BlackjackHand()
+    dealer_hand = BlackjackHand()
+    print('\nuser cards')
+    user_hand.output_cards()
+    print('\ndealer cards')
+    dealer_hand.output_cards()
+    while not user_hand.bust():
+        hit = input("\nEnter 'h' to hit, anything else to stay.\n")
+        if hit =='h':
+            user_hand.hit()
+        else:
+            break
+
+    print('dealer:')
+    while (not dealer_hand.bust) and (dealer_hand.calculate_hand_total < 17):
+        dealer_hand.hit()
+        
+
+
+    
+    if user_hand.bust():
+        print('You bust')
+        print('You lost: %s chips' % bet)
+        print('New total: %s chips' % chip_total)
+                
+        
+        
+
+
+    
+#Blackjack Hand Class
 class BlackjackHand:
     def __init__(self):
         self.hand_total = 0
@@ -63,6 +85,7 @@ class BlackjackHand:
         self.hand_cards.append(rand_val)
         deck_cards.pop(rand_val)
         
+
     def calculate_hand_val(self):
         self.hand_total = 0
         for x in range(len(self.hand_cards)):
@@ -104,23 +127,30 @@ class BlackjackHand:
                 print(cardval)
         print('Total: %d' % self.calculate_hand_val())
 
+    def hit(self):
+        self.draw_card()
+        self.output_cards()
+        self.hand_total = calculate_hand_val()
+
     def bust(self):
         if self.hand_total <= 21:
-            return false
+            return False
         else:
-            return true
+            return True
 
     def __lt__(self,other):
         if (self.hand_total < other.hand_total) and not self.bust():
-            return true
+            return True
         else:
-            return false
- 
+            return False
+
     def __eq__(self,other):
         if self.hand_total == other.hand_total and not self.bust():
-            return true
+            return True
         else:
-            return false
+            return False
         
-def play_round(chip_total):
-   make_bet(chip_total)
+     
+play_round(100)
+
+     
