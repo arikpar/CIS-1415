@@ -85,10 +85,10 @@ def play_round(chip_total):
         
  def play_again(chip_total):
         again = input("Do you want to play another hand? (Y/N): ").lower()
-        if again == "y":
-            play_round(chip_total)
-        else:
-            print("Bye!")       
+        while again == 'y':
+            chip_total = play_round(chip_total)
+            if again != 'y'
+                print('Bye!')      
 
    
 #Blackjack Hand Class
