@@ -150,6 +150,13 @@ class BlackjackHand:
         if self.hand_total == 21:
             print('Blackjack!')
 
+    def dealer_cards(self):
+        print('Dealer is showing:')
+        print(self.hand_cards[0])
+        if self.hand_total == 21:
+            print(self.hand_cards[1])
+            print('Dealer has a Blackjack.')
+            
     def hit(self):
         self.draw_card()
         self.output_cards()
