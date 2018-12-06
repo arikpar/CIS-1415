@@ -96,7 +96,23 @@ class BlackjackHand:
                 print(cardval)
         print('Total: %d' % self.calculate_hand_val())
 
-    def hit(self):
+    def bust(self):
+        if self.hand_total <= 21:
+            return false
+        else:
+            return true
+
+    def __lt__(self,other):
+        if (self.hand_total < other.hand_total) and not self.bust():
+            return true
+        else:
+            return false
+
+    def __eq__(self,other):
+        if self.hand_total == other.hand_total and not self.bust():
+            return true
+        else:
+            return false
         
         
 		
