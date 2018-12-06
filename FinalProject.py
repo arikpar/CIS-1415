@@ -57,7 +57,6 @@ class BlackjackHand:
         self.hand_cards.append(rand_val)
         deck_cards.pop(rand_val)
         
-
     def calculate_hand_val(self):
         self.hand_total = 0
         for x in range(len(self.hand_cards)):
@@ -81,10 +80,12 @@ class BlackjackHand:
                 self.hand_total = self.hand_total + 10
             if self.hand_cards[x] in [11,12,13,24,25,26,37,38,39,50,51,52]:
                 self.hand_total = self.hand_total + 10
-            if self.hand_cards[x] in [1,14,27,40] and self.hand_total <= 10:
+            if self.hand_cards[x] in [1,14,27,40]:
                 self.hand_total = self.hand_total + 11
-            if self.hand_cards[x] in [1,14,27,40] and self.hand_total > 10:
-                self.hand_total = self.hand_total + 1
+        for x in range(len(self.hand_cards)):
+            if (self.hand_cards[x] in [1,14,27,40]) and (self.hand_total > 21):
+                self.hand_total = self.hand_total - 10
+                
         return self.hand_total
 
     def output_cards(self):
