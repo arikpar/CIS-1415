@@ -1,6 +1,8 @@
 #Gabe Sorenson
 #Arik Parenteau
 
+import random
+
 card_value = {
   1: 'Ace of Hearts', 2: '2 of Hearts', 3: '3 of Hearts', 4: '4 of Hearts', 5: '5 of Hearts', 6: '6 of Hearts',
   7: '7 of Hearts', 8: '8 of Hearts', 9: '9 of Hearts', 10: '10 of Hearts', 11: 'Jack of Hearts', 12: 'Queen of Hearts', 
@@ -14,7 +16,7 @@ card_value = {
   52: 'King of Spades'
 }
 
-
+#functions
 def calc_score(card_list):
 total = 0
    for card in card_list:
@@ -24,22 +26,26 @@ total = 0
         total += card_value[card]
    return total
 
-def make_bet():
+def make_bet(chip_total):
    bet = 0
    print('What amount of chips would you like bet? Each chip is worth $5.')
   
    while bet == 0:
       bet_comp = input()
       bet_comp = int(bet_comp)
-      chip_total = 100
       
       if bet_comp >= 1 and bet_comp <= chip_total:
          bet = bet_comp
+         chip_total = chip_total - bet
          print("You put in $" + str(bet_comp*5) + ".")
       else:
          print("You only have " + str(chip_total) + " remaining")
-          
-import random
+   return chip_total
+
+def hit(BlackjackHand):
+   BlackjackHand.draw_card()
+   BlackjackHand.output_cards()
+
 
 deck_cards = card_value.copy()
 class BlackjackHand:
@@ -109,14 +115,12 @@ class BlackjackHand:
             return true
         else:
             return false
-
+ 
     def __eq__(self,other):
         if self.hand_total == other.hand_total and not self.bust():
             return true
         else:
             return false
         
-        
-make_bet()		
-BJH = BlackjackHand()
-BJH.output_cards()
+def play_round(chip_total):
+   make_bet(chip_total)
