@@ -49,18 +49,17 @@ def play_round(chip_total):
         hit = input("\nEnter 'h' to hit, anything else to stay.\n")
         if hit =='h':
             user_hand.hit()
+            if user_hand.hand_total == 21:
+                break
         else:
             break
-
     print('dealer:')
-    while (not dealer_hand.bust) and (dealer_hand.calculate_hand_total < 17):
+    while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
         dealer_hand.hit()
-        
-
 
     
-    if user_hand.bust():
-        print('You bust')
+    
+    if user_hand.bust() or user_hand < dealer_hand:
         print('You lost: %s chips' % bet)
         print('New total: %s chips' % chip_total)
                 
@@ -84,6 +83,7 @@ class BlackjackHand:
             rand_val = random.randint(1,52)
         self.hand_cards.append(rand_val)
         deck_cards.pop(rand_val)
+        self.calculate_hand_val()
         
 
     def calculate_hand_val(self):
@@ -126,16 +126,18 @@ class BlackjackHand:
                 cardval = card_value[card]
                 print(cardval)
         print('Total: %d' % self.calculate_hand_val())
+        if self.hand_total == 21:
+            print('Blackjack!')
 
     def hit(self):
         self.draw_card()
         self.output_cards()
-        self.hand_total = calculate_hand_val()
 
     def bust(self):
         if self.hand_total <= 21:
             return False
         else:
+            print('Bust')
             return True
 
     def __lt__(self,other):
@@ -152,5 +154,4 @@ class BlackjackHand:
         
      
 play_round(100)
-
      
