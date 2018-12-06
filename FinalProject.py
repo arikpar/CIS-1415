@@ -17,7 +17,6 @@ card_value = {
 
 deck_cards = card_value.copy()
 
-
 #functions
 
 def make_bet(chip_total):
@@ -57,8 +56,7 @@ def play_round(chip_total):
     while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
         dealer_hand.hit()
 
-    
-    
+        
     if user_hand.bust() or user_hand < dealer_hand:
         print('You lost: %s chips' % bet)
         print('New total: %s chips' % chip_total)
@@ -71,8 +69,7 @@ def play_round(chip_total):
         else:
             print("Bye!")       
 
-
-    
+   
 #Blackjack Hand Class
 class BlackjackHand:
     def __init__(self):
@@ -90,7 +87,6 @@ class BlackjackHand:
         deck_cards.pop(rand_val)
         self.calculate_hand_val()
         
-
     def calculate_hand_val(self):
         self.hand_total = 0
         for x in range(len(self.hand_cards)):
@@ -157,6 +153,6 @@ class BlackjackHand:
         else:
             return False
         
-     
+        
 play_round(100)
 play_again(100)     
