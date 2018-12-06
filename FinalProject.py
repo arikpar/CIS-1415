@@ -8,14 +8,15 @@ card_value = {
   13: 'King of Hearts', 14: 'Ace of Diamonds', 15: 'Two of Diamonds', 16: 'Three of Diamonds', 17: 'Four of Diamonds',
   18: 'Five of Diamonds', 19: 'Six of Diamonds', 20: 'Seven of Diamonds', 21: 'Eight of Diamonds', 22: 'Nine of Diamonds',
   23: 'Ten of Diamonds', 24: 'Jack of Diamonds', 25: 'Queen of Diamonds', 26: 'King of Diamonds', 27: 'Ace of Clubs',
-  28: '2 of Clubs', 29: '3 of Clubs', 30: '4 of Clubs', 31: '5 of Clubs', 32: '6 of Clubs', 33: '7 of Clubs',
-  34: '8 of Clubs', 35: '9 of Clubs', 36: '10 of Clubs', 37: 'Jack of Clubs', 38: 'Queen of Clubs', 39: 'King of Clubs', 
-  40: 'Ace of Spades', 41: '2 of Spades', 42: '3 of Spades', 43: '4 of Spades', 44: '5 of Spades', 45: '6 of Spades',
-  46: '7 of Spades', 47: '8 of Spades', 48: '9 of Spades', 49: '10 of Spades', 50: 'Jack of Spades', 51: 'Queen of Spades',
+  28: 'Two of Clubs', 29: 'Three of Clubs', 30: 'Four of Clubs', 31: 'Five of Clubs', 32: 'Six of Clubs', 33: 'Seven of Clubs',
+  34: 'Eight of Clubs', 35: 'Nine of Clubs', 36: 'Ten of Clubs', 37: 'Jack of Clubs', 38: 'Queen of Clubs', 39: 'King of Clubs', 
+  40: 'Ace of Spades', 41: 'Two of Spades', 42: 'Three of Spades', 43: 'Four of Spades', 44: 'Five of Spades', 45: 'Six of Spades',
+  46: 'Seven of Spades', 47: 'Eight of Spades', 48: 'Nine of Spades', 49: 'Ten of Spades', 50: 'Jack of Spades', 51: 'Queen of Spades',
   52: 'King of Spades'
 }
 
 deck_cards = card_value.copy()
+
 
 #functions
 
@@ -44,7 +45,7 @@ def play_round(chip_total):
     user_hand.output_cards()
     print('\ndealer cards')
     dealer_hand.output_cards()
-    while not user_hand.bust() and dealer_hand.hand_total != 21:
+    while not user_hand.bust() and dealer_hand.hand_total != 21 and user_hand.hand_total != 21:
         hit = input("\nEnter 'h' to hit, anything else to stay.\n")
         if hit =='h':
             user_hand.hit()
@@ -76,23 +77,21 @@ def play_round(chip_total):
         chip_total = chip_total + 2 * bet
         print('New total: %s' % chip_total)
         return chip_total
-
         
-    if user_hand.bust() or user_hand < dealer_hand:
-        print('You lost: %s chips' % bet)
-        print('New total: %s chips' % chip_total)
-                
-        
- def play_again(chip_total):
-        again = 'y'
-        while again == 'y':
-            again = input("Do you want to play another hand? (Y/N): ").lower()
-            chip_total = play_round(chip_total)
-            if again != 'y'
-                print('Bye!')
-        return chip_total
 
-   
+def play_again(chip_total):
+    again = 'y'
+    while again == 'y':
+        if len(deck_cards.keys()) < 26:
+            deck_cards = card_value.copy()
+        chip_total = play_round(chip_total)
+        again = input("Do you want to play another hand? (Y/N): ").lower()
+        if again != 'y':
+            print('Bye!')
+    return chip_total
+
+
+    
 #Blackjack Hand Class
 class BlackjackHand:
     def __init__(self):
@@ -110,6 +109,7 @@ class BlackjackHand:
         deck_cards.pop(rand_val)
         self.calculate_hand_val()
         
+
     def calculate_hand_val(self):
         self.hand_total = 0
         for x in range(len(self.hand_cards)):
@@ -161,11 +161,10 @@ class BlackjackHand:
         if self.hand_total <= 21:
             return False
         else:
-            print('Bust')
             return True
 
     def __lt__(self,other):
-        if (self.hand_total < other.hand_total) and not self.bust():
+        if (self.hand_total < other.hand_total) and not other.bust():
             return True
         else:
             return False
@@ -176,11 +175,13 @@ class BlackjackHand:
         else:
             return False
         
-print("Welcome to the world of Blackjack")
-chips = int(input("How many chips do you want to start out with?"))
+
+
+print('Welcome to the world of Blackjack')
+chips = int(input('How many chips would you want to start out with?'))
 while chips < 1 or chips > 100:
-    chips = int(input("Invalid chip amount. Try again.\n"))
+    chips = int(input('Invalid chip amount. Try again.\n'))
 chips = play_again(chips)
-print('Total winnings:      
-play_round(100)
-play_again(100)     
+print('Total winnings homies: %s' % chips)
+                  
+   
