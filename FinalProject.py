@@ -176,6 +176,11 @@ class BlackjackHand:
         else:
             return False
         
-        
+print("Welcome to the world of Blackjack")
+chips = int(input("How many chips do you want to start out with?"))
+while chips < 1 or chips > 100:
+    chips = int(input("Invalid chip amount. Try again.\n"))
+chips = play_again(chips)
+print('Total winnings:      
 play_round(100)
 play_again(100)     
