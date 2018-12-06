@@ -90,8 +90,7 @@ def play_again(chip_total):
             print('Goodbye!')
     return chip_total
 
-
-    
+ 
 #Blackjack Hand Class
 class BlackjackHand:
     def __init__(self):
@@ -100,15 +99,14 @@ class BlackjackHand:
         self.hand_cards = []
         self.draw_card()
         self.draw_card()
-
+   
     def draw_card(self):
         rand_val = random.randint(1,52)
         while rand_val not in deck_cards:
             rand_val = random.randint(1,52)
         self.hand_cards.append(rand_val)
         deck_cards.pop(rand_val)
-        self.calculate_hand_val()
-        
+        self.calculate_hand_val() 
 
     def calculate_hand_val(self):
         self.hand_total = 0
@@ -146,7 +144,6 @@ class BlackjackHand:
         for x in range(len(self.hand_cards)):
             card = int(self.hand_cards[x])
             if card in card_value:
-                
                 cardval = card_value[card]
                 print(cardval)
         print('Total: %d' % self.calculate_hand_val())
@@ -175,8 +172,7 @@ class BlackjackHand:
         else:
             return False
         
-
-
+        
 print('Welcome to the world of Blackjack!')
 chips = int(input('How many chips would you like to start out with?'))
 while chips < 1 or chips > 100:
