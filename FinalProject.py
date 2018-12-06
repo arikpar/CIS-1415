@@ -64,7 +64,12 @@ def play_round(chip_total):
         print('New total: %s chips' % chip_total)
                 
         
-        
+ def play_again(chip_total):
+        again = input("Do you want to play another hand? (Y/N): ").lower()
+        if again == "y":
+            play_round(chip_total)
+        else:
+            print("Bye!")       
 
 
     
