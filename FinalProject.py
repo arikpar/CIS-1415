@@ -31,12 +31,13 @@ def make_bet():
    while bet == 0:
       bet_comp = input()
       bet_comp = int(bet_comp)
+      chip_total = 100
       
       if bet_comp >= 1 and bet_comp <= chip_total:
          bet = bet_comp
+         print("You put in $" + str(bet_comp*5) + ".")
       else:
          print("You only have " + str(chip_total) + " remaining")
-
           
 import random
 
@@ -115,6 +116,6 @@ class BlackjackHand:
             return false
         
         
-		
+make_bet()		
 BJH = BlackjackHand()
 BJH.output_cards()
