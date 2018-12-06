@@ -44,17 +44,38 @@ def play_round(chip_total):
     user_hand.output_cards()
     print('\ndealer cards')
     dealer_hand.output_cards()
-    while not user_hand.bust():
+    while not user_hand.bust() and dealer_hand.hand_total != 21:
         hit = input("\nEnter 'h' to hit, anything else to stay.\n")
         if hit =='h':
             user_hand.hit()
             if user_hand.hand_total == 21:
                 break
+            if user_hand.hand_total > 21:
+                print('You bust')
         else:
             break
     print('dealer:')
-    while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
-        dealer_hand.hit()
+    if not user_hand.bust():
+        while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
+            dealer_hand.hit()
+            if dealer_hand.hand_total > 21:
+                print('Dealer bust')
+
+    
+    if user_hand.bust() or user_hand < dealer_hand:
+        print('You lost: %s chips' % bet)
+        print('New total: %s chips' % chip_total)
+        return chip_total
+    elif user_hand == dealer_hand:
+        print('Push')
+        chip_total = chip_total + bet
+        print('You get your chips back.\nTotal: %s' % chip_total)
+        return chip_total
+    else:
+        print('You win: %d chips' % bet)
+        chip_total = chip_total + 2 * bet
+        print('New total: %s' % chip_total)
+        return chip_total
 
         
     if user_hand.bust() or user_hand < dealer_hand:
