@@ -21,12 +21,10 @@ deck_cards = card_value.copy()
 
 
 #functions
-#the aspect of this project that we included that we did not learn in class is the sleep function in the time module. This allowed
-#us to have the game flow better an not suddenly output the print statements with the dealer's hit and stuff similar to that.
 
 def make_bet(chip_total):
     bet = 0
-    print('What amount of chips would you like bet this hand?')
+    print('What amount of chips would you like to bet this hand?')
     while bet == 0:
         try:
             bet_comp = input()
@@ -75,12 +73,18 @@ def play_round(chip_total):
                 time.sleep(1)
                 print('You busted!')
         else:
+            print('You stand\n')
             time.sleep(1)
             print('Dealer has:')
             time.sleep(1)
             break
+
+    if user_hand.hand_total == 21:
+        print('Dealer has:')
+    
     if not user_hand.bust():
-        dealer_hand.output_cards()
+        if dealer_hand.hand_total != 21:
+            dealer_hand.output_cards()
         while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
             time.sleep(1)
             print('\nDealer hits.')
@@ -120,13 +124,16 @@ def play_round(chip_total):
 def play_again(chip_total):
     again = 'y'
     global deck_cards
-    while again == 'y':
+    while again == 'y' and chip_total > 0:
         if len(deck_cards.keys()) < 26:
             deck_cards = card_value.copy()
             time.sleep(1)
             print('Shuffling........')
             time.sleep(2)
         chip_total = play_round(chip_total)
+        if chip_total == 0:
+            print('You ran out of chips. Thanks for playing!')
+            break
         again = input("Do you want to play another hand? (Y/N): ").lower()
         if again != 'y':
             time.sleep(1)
@@ -255,8 +262,22 @@ while chips == 0:
                 print('Enter an amount greater than 0.')
     except ValueError:
         print('Please enter a numeric value.')
-chips = play_again(chips)
+
+starting_chips = chips
+chips = int(play_again(chips))
 time.sleep(1)
-print('Total winnings: %s chips' % chips)
-                  
-   
+print('Total chips: %s' % chips)
+with open('gamewinnings.txt', 'a') as myfile:
+    if chips > starting_chips:
+        print('You came out $%d ahead' % (5 * (chips - starting_chips)))
+        myfile.write('+$')
+        myfile.write(str(5 * (chips - starting_chips)))
+    elif chips == starting_chips:
+        print('You came out even')
+        myfile.write('$0')
+    else:
+        print('You lost $%d' % (5 * (starting_chips - chips)))
+        myfile.write('-$')
+        myfile.write(str(5 * (starting_chips - chips)))
+    myfile.write('\n')
+
