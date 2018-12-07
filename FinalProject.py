@@ -206,6 +206,12 @@ class BlackjackHand:
         self.draw_card()
         card = card_value[self.hand_cards[len(self.hand_cards) - 1]]
         print('%s is drawn' % card)
+        if self.hand_total == 21:
+            time.sleep(1)
+            print("Blackjack!")
+        if self.bust():
+            time.sleep(1)
+            print("Bust!")   
         print('Total: %s' % self.hand_total)
 
     def bust(self):
