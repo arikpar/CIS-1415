@@ -68,7 +68,8 @@ def play_round(chip_total):
                 print('You busted!')
         else:
             break
-    print('\nDealer has:')
+    time.sleep(1)
+    print('Dealer has:')
     if not user_hand.bust():
         dealer_hand.output_cards()
         while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
