@@ -26,17 +26,23 @@ def make_bet(chip_total):
     bet = 0
     print('What amount of chips would you like bet this hand?')
     while bet == 0:
-        bet_comp = input()
-        bet_comp = int(bet_comp)
+        try:
+            bet_comp = input()
+            bet_comp = int(bet_comp)
 
-        if bet_comp >= 1 and bet_comp <= chip_total:
-            bet = bet_comp
-            chip_total = chip_total - bet
-            time.sleep(.5)
-            print("You put in $" + str(bet_comp*5) + ".")
-        else:
-            time.sleep(.5)
-            print("You only have " + str(chip_total) + " chips remaining")
+            if bet_comp >= 1 and bet_comp <= chip_total:
+                bet = bet_comp
+                chip_total = chip_total - bet
+                time.sleep(.5)
+                print("You put in $" + str(bet_comp*5) + ".")
+            else:
+                time.sleep(.5)
+                if bet_comp > chip_total:
+                    print("You only have " + str(chip_total) + " chips remaining")
+                else:
+                    print('Enter an amount greater than 0.')
+        except ValueError:
+            print('Please enter a numeric value.')
     return chip_total, bet
 
 
@@ -224,10 +230,23 @@ class BlackjackHand:
 print('Welcome to the world of Blackjack!')
 print('-----------------------------------')
 time.sleep(1)
-chips = int(input('How many chips would you like to start out with? Each chip is worth $5.\n'))
-while chips < 1 or chips > 100:
+chips = 0
+print('How many chips would you like to start out with? Each chip is worth $5.\n')
+print('The maximum amount of chips to start with is 100')
+while chips == 0:
     time.sleep(1)
-    chips = int(input('Invalid chip amount. Try again.\n'))
+    try:
+        chip_comp = input()
+        chip_comp = int(chip_comp)
+        if chip_comp >= 1 and chip_comp <= 100:
+            chips = chip_comp
+        else:
+            if chip_comp > 100:
+                print("Enter an amount less than or equal to 100.")
+            else:
+                print('Enter an amount greater than 0.')
+    except ValueError:
+        print('Please enter a numeric value.')
 chips = play_again(chips)
 print('Total winnings: %s chips' % chips)
                   
