@@ -172,7 +172,7 @@ class BlackjackHand:
             
     def hit(self):
         self.draw_card()
-        card = card_value[self.hand_cards[len(self.hand_cards - 1)]]
+        card = card_value[self.hand_cards[len(self.hand_cards) - 1]]
         print('%s is drawn' % card)
 
     def bust(self):
