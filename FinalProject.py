@@ -81,6 +81,7 @@ def play_round(chip_total):
 
 def play_again(chip_total):
     again = 'y'
+    global deck_cards
     while again == 'y':
         if len(deck_cards.keys()) < 26:
             deck_cards = card_value.copy()
