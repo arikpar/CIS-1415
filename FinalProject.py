@@ -41,10 +41,10 @@ def play_round(chip_total):
     chip_total, bet = make_bet(chip_total)
     user_hand = BlackjackHand()
     dealer_hand = BlackjackHand()
-    print('\nUser cards:')
+    print('\nYour turn:')
     user_hand.output_cards()
-    print('\nDealer cards:')
-    dealer_hand.output_cards()
+    print("\nDealer's turn:")
+    dealer_hand.dealer_cards()
     while not user_hand.bust() and dealer_hand.hand_total != 21 and user_hand.hand_total != 21:
         hit = input("\nEnter 'h' to hit, anything else to stand.\n")
         if hit =='h':
@@ -151,10 +151,10 @@ class BlackjackHand:
             print('Blackjack!')
 
     def dealer_cards(self):
-        print('Dealer is showing:')
-        print(self.hand_cards[0])
+        print('\nDealer is showing:')
+        print(card_value[self.hand_cards[0]])
         if self.hand_total == 21:
-            print(self.hand_cards[1])
+            print(card_value[self.hand_cards[1]])
             print('Dealer has a Blackjack.')
             
     def hit(self):
