@@ -21,6 +21,8 @@ deck_cards = card_value.copy()
 
 
 #functions
+#the aspect of this project that we included that we did not learn in class is the sleep function in the time module. This allowed
+#us to have the game flow better an not suddenly output the print statements with the dealer's hit and stuff similar to that.
 
 def make_bet(chip_total):
     bet = 0
