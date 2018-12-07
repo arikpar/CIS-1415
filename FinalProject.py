@@ -41,8 +41,11 @@ def play_round(chip_total):
     chip_total, bet = make_bet(chip_total)
     user_hand = BlackjackHand()
     dealer_hand = BlackjackHand()
-    print('\nYour turn:')
+    print('\nUser cards:')
+    print('----------------')
     user_hand.output_cards()
+    print('\nDealer is showing:')
+    print('----------------')
     dealer_hand.dealer_cards()
     while not user_hand.bust() and dealer_hand.hand_total != 21 and user_hand.hand_total != 21:
         hit = input("\nEnter 'h' to hit, anything else to stand.\n")
@@ -54,17 +57,18 @@ def play_round(chip_total):
                 print('You busted!')
         else:
             break
-    print('dealer:')
     if not user_hand.bust():
         while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
             dealer_hand.hit()
             if dealer_hand.hand_total > 21:
-                print('The dealer busted!')
+                print('The Dealer busted!')
 
     
     if user_hand.bust() or user_hand < dealer_hand:
+        print('----------------')
         print('You lost: %s chips that hand.' % bet)
         print('New chip total: %s.' % chip_total)
+        print('----------------')
         return chip_total
     elif user_hand == dealer_hand:
         print('You push!')
@@ -72,9 +76,11 @@ def play_round(chip_total):
         print('You get your chips back.\nTotal: %s' % chip_total)
         return chip_total
     else:
+        print('----------------')
         print('You won: %d chips that hand!' % bet)
         chip_total = chip_total + 2 * bet
         print('New chip total: %s' % chip_total)
+        print('----------------')
         return chip_total
         
 
@@ -84,10 +90,12 @@ def play_again(chip_total):
     while again == 'y':
         if len(deck_cards.keys()) < 26:
             deck_cards = card_value.copy()
+            print('Shuffling........')
         chip_total = play_round(chip_total)
         again = input("Do you want to play another hand? (Y/N): ").lower()
         if again != 'y':
             print('Goodbye!')
+            print('----------------')
     return chip_total
 
  
@@ -181,7 +189,8 @@ class BlackjackHand:
         
         
 print('Welcome to the world of Blackjack!')
-chips = int(input('How many chips would you like to start out with?'))
+print('-----------------------------------')
+chips = int(input('How many chips would you like to start out with?\n'))
 while chips < 1 or chips > 100:
     chips = int(input('Invalid chip amount. Try again.\n'))
 chips = play_again(chips)
