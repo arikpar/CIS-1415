@@ -248,6 +248,7 @@ while chips == 0:
     except ValueError:
         print('Please enter a numeric value.')
 chips = play_again(chips)
+time.sleep(1)
 print('Total winnings: %s chips' % chips)
                   
    
