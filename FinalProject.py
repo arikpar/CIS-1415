@@ -24,7 +24,7 @@ deck_cards = card_value.copy()
 
 def make_bet(chip_total):
     bet = 0
-    print('What amount of chips would you like bet this hand? Each chip is worth $5.')
+    print('What amount of chips would you like bet this hand?')
     while bet == 0:
         bet_comp = input()
         bet_comp = int(bet_comp)
@@ -195,7 +195,7 @@ class BlackjackHand:
         
 print('Welcome to the world of Blackjack!')
 print('-----------------------------------')
-chips = int(input('How many chips would you like to start out with?\n'))
+chips = int(input('How many chips would you like to start out with? Each chip is worth $5.\n'))
 while chips < 1 or chips > 100:
     chips = int(input('Invalid chip amount. Try again.\n'))
 chips = play_again(chips)
