@@ -59,7 +59,7 @@ def play_round(chip_total):
                 print('You busted!')
         else:
             break
-    print('\nDealer:')
+    print('\nDealer has:')
     if not user_hand.bust():
         dealer_hand.output_cards()
         while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
@@ -77,7 +77,7 @@ def play_round(chip_total):
         print('----------------')
         return chip_total
     elif user_hand == dealer_hand:
-        print('You push!')
+        print('You push!\n')
         chip_total = chip_total + bet
         print('You get your chips back.\nTotal: %s' % chip_total)
         return chip_total
@@ -154,7 +154,6 @@ class BlackjackHand:
         return self.hand_total
 
     def output_cards(self):
-        print('Cards in hand:')
         for x in range(len(self.hand_cards)):
             card = int(self.hand_cards[x])
             if card in card_value:
@@ -174,6 +173,7 @@ class BlackjackHand:
         self.draw_card()
         card = card_value[self.hand_cards[len(self.hand_cards) - 1]]
         print('%s is drawn' % card)
+        print('Total: %s' % self.hand_total)
 
     def bust(self):
         if self.hand_total <= 21:
