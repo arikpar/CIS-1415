@@ -43,7 +43,6 @@ def play_round(chip_total):
     dealer_hand = BlackjackHand()
     print('\nYour turn:')
     user_hand.output_cards()
-    print("\nDealer's turn:")
     dealer_hand.dealer_cards()
     while not user_hand.bust() and dealer_hand.hand_total != 21 and user_hand.hand_total != 21:
         hit = input("\nEnter 'h' to hit, anything else to stand.\n")
