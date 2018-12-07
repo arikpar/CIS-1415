@@ -92,7 +92,7 @@ def play_round(chip_total):
     if user_hand.bust() or user_hand < dealer_hand:
         print('----------------')
         time.sleep(1)
-        print('You lost: %s chips that hand.' % bet)
+        print('You lost %s chips that hand.' % bet)
         time.sleep(1)
         print('New chip total: %s.' % chip_total)
         print('----------------')
@@ -107,7 +107,7 @@ def play_round(chip_total):
     else:
         print('----------------')
         time.sleep(1)
-        print('You won: %d chips that hand!' % bet)
+        print('You won %d chips that hand!' % bet)
         chip_total = chip_total + 2 * bet
         time.sleep(1)
         print('New chip total: %s' % chip_total)
