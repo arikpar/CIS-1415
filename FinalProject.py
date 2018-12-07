@@ -32,8 +32,10 @@ def make_bet(chip_total):
         if bet_comp >= 1 and bet_comp <= chip_total:
             bet = bet_comp
             chip_total = chip_total - bet
+            time.sleep(.5)
             print("You put in $" + str(bet_comp*5) + ".")
         else:
+            time.sleep(.5)
             print("You only have " + str(chip_total) + " chips remaining")
     return chip_total, bet
 
@@ -43,19 +45,26 @@ def play_round(chip_total):
     chip_total, bet = make_bet(chip_total)
     user_hand = BlackjackHand()
     dealer_hand = BlackjackHand()
+    time.sleep(1)
     print('\nYour cards:')
     print('----------------')
+    time.sleep(1)
     user_hand.output_cards()
+    time.sleep(1)
     print('\nDealer is showing:')
     print('----------------')
+    time.sleep(1)
     dealer_hand.dealer_cards()
     while not user_hand.bust() and dealer_hand.hand_total != 21 and user_hand.hand_total != 21:
+        time.sleep(1)
         hit = input("\nEnter 'h' to hit, anything else to stand.\n")
         if hit =='h':
+            time.sleep(1)
             user_hand.hit()
             if user_hand.hand_total == 21:
                 break
             if user_hand.hand_total > 21:
+                time.sleep(1)
                 print('You busted!')
         else:
             break
@@ -64,27 +73,34 @@ def play_round(chip_total):
         dealer_hand.output_cards()
         while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
             print('\nDealer hits.')
-            time.sleep(2)
+            time.sleep(1.5)
             dealer_hand.hit()
             if dealer_hand.hand_total > 21:
+                time.sleep(1)
                 print('The dealer busted!')
 
     
     if user_hand.bust() or user_hand < dealer_hand:
         print('----------------')
+        time.sleep(1)
         print('You lost: %s chips that hand.' % bet)
+        time.sleep(1)
         print('New chip total: %s.' % chip_total)
         print('----------------')
         return chip_total
     elif user_hand == dealer_hand:
+        time.sleep(1)
         print('You push!\n')
         chip_total = chip_total + bet
+        time.sleep(1)
         print('You get your chips back.\nTotal: %s' % chip_total)
         return chip_total
     else:
         print('----------------')
+        time.sleep(1)
         print('You won: %d chips that hand!' % bet)
         chip_total = chip_total + 2 * bet
+        time.sleep(1)
         print('New chip total: %s' % chip_total)
         print('----------------')
         return chip_total
@@ -96,10 +112,13 @@ def play_again(chip_total):
     while again == 'y':
         if len(deck_cards.keys()) < 26:
             deck_cards = card_value.copy()
+            time.sleep(1)
             print('Shuffling........')
+            time.sleep(2)
         chip_total = play_round(chip_total)
         again = input("Do you want to play another hand? (Y/N): ").lower()
         if again != 'y':
+            time.sleep(1)
             print('Goodbye! Thanks for playing!')
             print('----------------')
     return chip_total
@@ -159,14 +178,19 @@ class BlackjackHand:
             if card in card_value:
                 cardval = card_value[card]
                 print(cardval)
+                time.sleep(1)
         print('Total: %d' % self.calculate_hand_val())
         if self.hand_total == 21:
+            time.sleep(1)
             print('Blackjack!')
 
     def dealer_cards(self):
+        time.sleep(.5)
         print(card_value[self.hand_cards[0]])
         if self.hand_total == 21:
+            time.sleep(.5)
             print(card_value[self.hand_cards[1]])
+            time.sleep(1)
             print('Dealer has a Blackjack.')
             
     def hit(self):
@@ -196,8 +220,10 @@ class BlackjackHand:
         
 print('Welcome to the world of Blackjack!')
 print('-----------------------------------')
+time.sleep(1)
 chips = int(input('How many chips would you like to start out with? Each chip is worth $5.\n'))
 while chips < 1 or chips > 100:
+    time.sleep(1)
     chips = int(input('Invalid chip amount. Try again.\n'))
 chips = play_again(chips)
 print('Total winnings: %s chips' % chips)
