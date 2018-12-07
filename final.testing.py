@@ -74,10 +74,10 @@ def play_round(chip_total):
             print('Dealer has:')
             time.sleep(1)
             break
-		
+
     if user_hand.hand_total == 21:
         print('Dealer has:')
-		
+    
     if not user_hand.bust():
         dealer_hand.output_cards()
         while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
@@ -257,7 +257,7 @@ while chips == 0:
 
 
 
-from tkinter import *
+import tkinter
 
 class BlackjackGUI:
     def __init__(self,chips):
@@ -279,16 +279,18 @@ class BlackjackGUI:
         self.bet_entry.pack(side='left')
 
         # Create the button widgets for the bottom frame.
+        self.play_button = tkinter.Button(self.bottom_frame, text='Play', command=self.play_again2)
         self.hit_button = tkinter.Button(self.bottom_frame, text='Hit', command=self.hit_it)
         self.stay_button = tkinter.Button(self.bottom_frame, text='Stay', command=self.stay_it)
         self.next_button = tkinter.Button(self.bottom_frame, text='Next Hand', command=self.next_hand)
         self.leave_button = tkinter.Button(self.bottom_frame, text='Cash Out', command=self.leave)
         
-		# Pack the buttons.
+	# Pack the buttons.
         self.hit_button.pack(side='left')
         self.stay_button.pack(side='left')
         self.next_button.pack()
         self.leave_button.pack()
+        self.play_button.pack()
 
         # Pack the frames.
         self.top_frame.pack()
@@ -296,9 +298,9 @@ class BlackjackGUI:
 
 
         # Enter the tkinter main loop.
-        tkinter.mainloop()
 
-        play_again(self.chips)
+        tkinter.mainloop()
+        
 
     # The convert method is a callback function for the Calculate button.
 
@@ -313,6 +315,9 @@ class BlackjackGUI:
         tkinter.messagebox.showinfo('Results', \
             str(kilo) + ' kilometers is equal to ' + \
             str(miles) + ' miles.')
+    def play_again2(self):
+        play_again(self.chips)
+        return
     def hit_it(self):
         return
     def stay_it(self):
