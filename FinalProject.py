@@ -2,6 +2,8 @@
 #Arik Parenteau
 
 import random
+import time
+
 card_value = {
   1: 'Ace of Hearts', 2: 'Two of Hearts', 3: 'Three of Hearts', 4: 'Four of Hearts', 5: 'Five of Hearts', 6: 'Six of Hearts',
   7: 'Seven of Hearts', 8: 'Eight of Hearts', 9: 'Nine of Hearts', 10: 'Ten of Hearts', 11: 'Jack of Hearts', 12: 'Queen of Hearts', 
@@ -41,7 +43,7 @@ def play_round(chip_total):
     chip_total, bet = make_bet(chip_total)
     user_hand = BlackjackHand()
     dealer_hand = BlackjackHand()
-    print('\nUser cards:')
+    print('\nYour cards:')
     print('----------------')
     user_hand.output_cards()
     print('\nDealer is showing:')
@@ -57,11 +59,15 @@ def play_round(chip_total):
                 print('You busted!')
         else:
             break
+            
     if not user_hand.bust():
+        dealer_hand.output_cards()
         while (not dealer_hand.bust()) and (dealer_hand.calculate_hand_val() < 17):
+            print('/nDealer hits.')
+            time.sleep(2)
             dealer_hand.hit()
             if dealer_hand.hand_total > 21:
-                print('The Dealer busted!')
+                print('The dealer busted!')
 
     
     if user_hand.bust() or user_hand < dealer_hand:
@@ -94,7 +100,7 @@ def play_again(chip_total):
         chip_total = play_round(chip_total)
         again = input("Do you want to play another hand? (Y/N): ").lower()
         if again != 'y':
-            print('Goodbye!')
+            print('Goodbye! Thanks for playing!')
             print('----------------')
     return chip_total
 
@@ -159,7 +165,6 @@ class BlackjackHand:
             print('Blackjack!')
 
     def dealer_cards(self):
-        print('\nDealer is showing:')
         print(card_value[self.hand_cards[0]])
         if self.hand_total == 21:
             print(card_value[self.hand_cards[1]])
