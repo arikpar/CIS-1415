@@ -64,6 +64,7 @@ def play_round(chip_total):
     while not user_hand.bust() and dealer_hand.hand_total != 21 and user_hand.hand_total != 21:
         time.sleep(1)
         hit = input("\nEnter 'h' to hit, anything else to stand.\n")
+        hit = hit.lower()
         if hit =='h':
             time.sleep(1)
             user_hand.hit()
@@ -137,9 +138,75 @@ def play_again(chip_total):
         again = input("Do you want to play another hand? (Y/N): ").lower()
         if again != 'y':
             time.sleep(1)
-            print('Goodbye! Thanks for playing!')
             print('----------------')
     return chip_total
+
+
+def play_game():
+    print('Welcome to the world of Blackjack!')
+    print('-----------------------------------')
+    time.sleep(1)
+    chips = 0
+    print('How many chips would you like to start out with? Each chip is worth $5.')
+    print('The maximum amount of chips to start with is 100')
+    while chips == 0:
+        time.sleep(1)
+        try:
+            chip_comp = input()
+            chip_comp = int(chip_comp)
+            if chip_comp >= 1 and chip_comp <= 100:
+                chips = chip_comp
+            else:
+                if chip_comp > 100:
+                    print("Enter an amount less than or equal to 100.")
+                else:
+                    print('Enter an amount greater than 0.')
+        except ValueError:
+            print('Please enter a numeric value.')
+
+    starting_chips = chips
+    chips = int(play_again(chips))
+    time.sleep(1)
+    print('Total chips: %s' % chips)
+    with open('gamewinnings.txt', 'a') as myfile:
+        if chips > starting_chips:
+            print('You came out $%d ahead' % (5 * (chips - starting_chips)))
+            myfile.write('+$')
+            myfile.write(str(5 * (chips - starting_chips)))
+        elif chips == starting_chips:
+            print('You came out even')
+            myfile.write('$0')
+        else:
+            print('You lost $%d' % (5 * (starting_chips - chips)))
+            myfile.write('-$')
+            myfile.write(str(5 * (starting_chips - chips)))
+        myfile.write('\n')
+    print('----------------')
+    time.sleep(1)
+
+def read_scores():
+    try:
+        f = open('gamewinnings.txt', 'r')
+        doc = f.readlines()
+        if len(doc) > 0:
+            print('Total winnings from past games:')
+            print()
+            for row in doc:
+                print(row,end='')
+                time.sleep(.25)
+            print()
+        else:
+            print('\nNo winnings saved.\n')
+    except:
+        print('\nUnable to find game winnings file. Please play a game first.\n')
+    time.sleep(1)
+
+
+def clear_scores():
+    with open('gamewinnings.txt', 'w') as f:
+        f.write('')
+    print('\nPrevious game winnings cleared\n')
+    time.sleep(1)
 
  
 #Blackjack Hand Class
@@ -241,43 +308,28 @@ class BlackjackHand:
         else:
             return False
         
+
         
-print('Welcome to the world of Blackjack!')
-print('-----------------------------------')
-time.sleep(1)
-chips = 0
-print('How many chips would you like to start out with? Each chip is worth $5.\n')
-print('The maximum amount of chips to start with is 100')
-while chips == 0:
-    time.sleep(1)
-    try:
-        chip_comp = input()
-        chip_comp = int(chip_comp)
-        if chip_comp >= 1 and chip_comp <= 100:
-            chips = chip_comp
-        else:
-            if chip_comp > 100:
-                print("Enter an amount less than or equal to 100.")
-            else:
-                print('Enter an amount greater than 0.')
-    except ValueError:
-        print('Please enter a numeric value.')
+#Main part of program
+menu = 'INPUT MENU:\n' \
+       'p - play game\n' \
+       'r - read scores\n' \
+       'c - clear scores\n' \
+       'q - quit'
 
-starting_chips = chips
-chips = int(play_again(chips))
-time.sleep(1)
-print('Total chips: %s' % chips)
-with open('gamewinnings.txt', 'a') as myfile:
-    if chips > starting_chips:
-        print('You came out $%d ahead' % (5 * (chips - starting_chips)))
-        myfile.write('+$')
-        myfile.write(str(5 * (chips - starting_chips)))
-    elif chips == starting_chips:
-        print('You came out even')
-        myfile.write('$0')
+menu_selection = ''
+while menu != 'q':
+    print(menu)
+    menu_selection = input('\nSelect an option:\n')
+    menu_selection = menu_selection.lower()
+    if menu_selection == 'p':
+        play_game()
+    elif menu_selection == 'r':
+        read_scores()
+    elif menu_selection == 'c':
+        clear_scores()
+    elif menu_selection == 'q':
+        print('Goodbye! Thanks for playing!')
+        break
     else:
-        print('You lost $%d' % (5 * (starting_chips - chips)))
-        myfile.write('-$')
-        myfile.write(str(5 * (starting_chips - chips)))
-    myfile.write('\n')
-
+        print('Invalid entry. Try again\n')
