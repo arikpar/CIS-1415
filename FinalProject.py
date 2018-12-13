@@ -1,5 +1,6 @@
 #Gabe Sorenson
 #Arik Parenteau
+#12/12/2018
 
 import random
 import time
@@ -151,7 +152,7 @@ def make_bet(chip_total):
                 else:
                     print('Enter an amount greater than 0.')
         except ValueError:
-            print('Please enter a numeric value.')
+            print('Please enter an integer value.')
     return chip_total, bet
 
 
@@ -276,7 +277,7 @@ def play_game():
                 else:
                     print('Enter an amount greater than 0.')
         except ValueError:
-            print('Please enter a numeric value.')
+            print('Please enter an integer value.')
 
     starting_chips = chips
     chips = int(play_again(chips))
@@ -327,12 +328,13 @@ def clear_scores():
 
         
 #Main part of program
-menu = 'INPUT MENU:\n' \
+menu = 'MENU:\n' \
        'p - play game\n' \
        'r - read previous winnings\n' \
        'c - clear scores\n' \
        'q - quit'
-
+print('Welcome to the World of Blackjack')
+print('Created by Arik Parenteau and Gabe Sorenson\n')
 menu_selection = ''
 while menu != 'q':
     print(menu)
@@ -349,6 +351,4 @@ while menu != 'q':
         break
     else:
         print('Invalid entry. Try again\n')
-
-
 
