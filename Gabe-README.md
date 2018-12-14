@@ -13,12 +13,11 @@ MEETING THE PROJECT REQUIREMENTS:
 4. The only modules we used were "random" and "time", and I don't think we used "time" in class. So we only used one module from class.
 5. We used a file to read and store winnings/losings from every hand played.
 6. Exceptions using just the one deck includes the fact that the dealer stands on a soft 17.
-7. One concept that we used that we did not learn in class was the usage of the time.sleep() method under the time moudle. This enabled the interface of the program to have a better feel and flow to it, and have it act more natural and realistic.
+7. One concept that we used that we did not learn in class was the usage of the time.sleep() method under the time module. This enabled the interface of the program to have a better feel and flow to it, and have it act more natural and realistic.
 
 GROUP MEMBERS:
 
--Gabe Sorenson (me)
--Arik Parenteau
+-Gabe Sorenson(me), Arik Parenteau
 
 REFLECTION:
 
